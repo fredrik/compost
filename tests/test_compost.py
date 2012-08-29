@@ -15,7 +15,7 @@ def test_compost():
 
     assert compost.list() == []
 
-    compost.back_up()
+    compost.turn()
     known_files = compost.list()
     assert known_files == ['home-20120828.bundle', 'desktop-20120828.bundle']
 
