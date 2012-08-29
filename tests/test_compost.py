@@ -1,13 +1,26 @@
 from compost import Compost
 
 
+def empty_bucket(bucket_name):
+    """Destructive helper."""
+    import boto
+    from boto.s3.bucket import Bucket
+    bucket = Bucket(connection=boto.connect_s3(), name=bucket_name)
+    for key in bucket.get_all_keys():
+        key.delete()
+
+
 def test_compost():
     """
     Test the very basics of compost management:
     Synchronise a local directory to the backup location,
     make sure that the files we expect to have been backed up are available
     to list and retrieve.
+
+    Connects to an actual S3 bucket (as defined below) using any keys you might have
+    defined in your environment.
     """
+
     compost = Compost(
         directory='/data/git-repos',
         bucket='test-git-repos-51806ac9a7bba4c653688ff6f18d04f2'
@@ -17,7 +30,10 @@ def test_compost():
 
     compost.turn()
     known_files = compost.list()
-    assert known_files == ['home-20120828.bundle', 'desktop-20120828.bundle']
+    assert sorted(known_files) == ['desktop-20120828.bundle', 'home-20120828.bundle']
 
-    assert compost.read('home-20120828.bundle') == 'heh, what? this is not a binary bundle.'
-    assert compost.read('desktop-20120828.bundle') == 'nor are we.'
+    assert compost.read('home-20120828.bundle') == 'heh, what? this is not a binary bundle.\n'
+    assert compost.read('desktop-20120828.bundle') == 'nor are we.\n'
+
+    empty_bucket('test-git-repos-51806ac9a7bba4c653688ff6f18d04f2')
+    assert compost.list() == []
