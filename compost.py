@@ -1,2 +1,7 @@
+from boto.s3.bucket import Bucket
+
+
 class Compost(object):
-	pass
+    def __init__(self, directory, bucket):
+        self.directory = directory
+        self.bucket = Bucket(bucket)
