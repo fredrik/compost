@@ -1,0 +1,2 @@
+class Compost(object):
+	pass
