@@ -21,7 +21,7 @@ class Compost(object):
         for filename, full_path in self._local_files():
             logger.debug('backing up {}'.format(filename))
             key = self.bucket.new_key(filename)
-            key.set_contents_from_filename(full_path)
+            key.set_contents_from_filename(full_path, replace=False)
 
     def list(self):
         """Return a list of known backed up files."""
