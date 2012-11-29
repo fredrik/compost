@@ -40,7 +40,3 @@ def test_read(compost):
     compost.turn()
     assert compost.read('home-20120828.bundle') == 'heh, what? this is not a binary bundle.\n'
     assert compost.read('desktop-20120828.bundle') == 'nor are we.\n'
-
-
-def test_list(compost):
-    assert compost.list() == []
