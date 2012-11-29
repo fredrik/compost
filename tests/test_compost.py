@@ -1,13 +1,6 @@
 from compost import Compost
 
-
-def empty_bucket(bucket_name):
-    """Destructive helper."""
-    import boto
-    from boto.s3.bucket import Bucket
-    bucket = Bucket(connection=boto.connect_s3(), name=bucket_name)
-    for key in bucket.get_all_keys():
-        key.delete()
+from .helpers import empty_bucket
 
 
 def test_compost():
