@@ -1,8 +1,11 @@
+import pytest
+
 from compost import Compost
 from . import helpers
 
 
-def pytest_funcarg__compost(request):
+@pytest.fixture
+def compost(request):
     """
     Returns a Compost object that is guaranteed to be empty.
     """

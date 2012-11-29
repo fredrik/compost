@@ -1,3 +1,2 @@
-pytest==2.2.4
-
 boto==2.5.2
+pytest==2.3.4

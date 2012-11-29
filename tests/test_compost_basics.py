@@ -7,7 +7,7 @@ to list and retrieve.
 Connects to an actual S3 bucket (as defined below) using any keys you might have
 defined in your environment.
 """
-from funcargs import *
+from funcargs import compost
 
 
 def test_empty_compost_is_empty(compost):
