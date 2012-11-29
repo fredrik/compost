@@ -1,1 +1,6 @@
-Compost, back up files to S3.
+Compost: back up files to S3.
+
+Features
+
+    + backs up arbitrary directory to arbitrary bucket.
+    + does not overwrite already backed up files.
